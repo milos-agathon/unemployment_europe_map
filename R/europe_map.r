@@ -75,7 +75,7 @@ f1 <- merge(unemp, nuts2, by="NUTS_ID")
   mutate(NUTS_ID = as.character(id))
 d <- e %>% left_join(f1, by = "NUTS_ID")
 
-# Let's find a natural interval with quantile breaks for our distance var
+# let's find a natural interval with pretty breaks
 ni = classIntervals(d$values, 
 	            n = 6, 
 	            style = 'pretty')$brks
