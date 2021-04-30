@@ -37,21 +37,21 @@ unzip("CNTR_RG_01M_2013_4326.shp.zip")
 
 #load NUTS shapefile
 nuts2 <- readOGR(getwd(),
-				"NUTS_RG_01M_2016_4326_LEVL_2",
-				 verbose = TRUE, 
-				 stringsAsFactors = FALSE)
+		 "NUTS_RG_01M_2016_4326_LEVL_2",
+		 verbose = TRUE, 
+		 stringsAsFactors = FALSE)
 
 #load country shapefile
 cntry <- readOGR(getwd(),
-				"CNTR_RG_01M_2013_4326", 
-				 verbose = TRUE, 
-				 stringsAsFactors = FALSE)
+		 "CNTR_RG_01M_2013_4326", 
+		 verbose = TRUE, 
+		 stringsAsFactors = FALSE)
 
 
 #only European countries on the map
 out <- c("MA", "TN", "DZ", "EG", "LY",
-		 "JO", "IL", "PS", "SY", "SA",
-		 "LB", "IQ", "IR", "GL")
+	"JO", "IL", "PS", "SY", "SA",
+	"LB", "IQ", "IR", "GL")
 cn <- subset(cntry, !FID%in%out)
 c <- fortify(cn)
 
@@ -64,8 +64,8 @@ lfst_r_lfur2gac <- eurostat::get_eurostat("lfst_r_lfur2gac",
                                     time_format = "num")
 unemp <- lfst_r_lfur2gac %>%
 			dplyr::filter(age=="Y20-64" &
-				   sex=="T",
-				   time==2019) %>% #keep total rate as % of active population aged 20-64 in 2019
+			sex=="T",
+			time==2019) %>% #keep total rate as % of active population aged 20-64 in 2019
   			dplyr::select(geo, values)
 names(unemp)[1] <- "NUTS_ID"
 
@@ -77,8 +77,8 @@ d <- e %>% left_join(f1, by = "NUTS_ID")
 
 # Let's find a natural interval with quantile breaks for our distance var
 ni = classIntervals(d$values, 
-				   n = 6, 
-				   style = 'pretty')$brks
+	            n = 6, 
+	            style = 'pretty')$brks
 # this function uses above intervals to create categories
 labels <- c()
 for(i in 1:length(ni)){
