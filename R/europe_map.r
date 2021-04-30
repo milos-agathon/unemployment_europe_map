@@ -59,7 +59,7 @@ c <- fortify(cn)
 # DATASET #
 ###########    
 
-# get NUTS2-level data on long-term unemployment in %
+# get NUTS2-level data on unemployment in %
 lfst_r_lfur2gac <- eurostat::get_eurostat("lfst_r_lfur2gac",
                                     time_format = "num")
 unemp <- lfst_r_lfur2gac %>%
@@ -169,4 +169,4 @@ axis.ticks = element_blank(),
 axis.text.x = element_blank(),
 axis.text.y = element_blank())
 
-ggsave(filename="longterm_unemploy.png", width=7, height=8.5, dpi = 600, device='png', p)
+ggsave(filename="unemploy.png", width=7, height=8.5, dpi = 600, device='png', p)
