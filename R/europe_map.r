@@ -17,22 +17,15 @@ set.seed(20210429)
 ##############
 
 #download Eurostat NUTS 2016 shapefiles
-temp1 <- tempfile(fileext = ".zip")
-# now download the zip file from its location on the Eurostat website and
-# put it into the temp object
-download.file("https://gisco-services.ec.europa.eu/distribution/v2/nuts/download/ref-nuts-2016-01m.shp.zip", 
-    temp1)
-# now unzip the boundary data
-unzip(temp1)
+url <- "https://gisco-services.ec.europa.eu/distribution/v2/nuts/download/ref-nuts-2016-01m.shp.zip" # location on the Eurostat website
+download.file(url, basename(url), mode="wb") #download Eurostat country shapefiles
+unzip("ref-nuts-2016-01m.shp.zip") # unzip the boundary data
+unzip("NUTS_RG_01M_2016_4326_LEVL_2.shp.zip") # unzip the NUTS-2 folder
 
-#download Eurostat country shapefile
-temp2 <- tempfile(fileext = ".zip")
-download.file("https://gisco-services.ec.europa.eu/distribution/v2/countries/download/ref-countries-2013-01m.shp.zip", 
-    temp2)
-unzip(temp2)
-
-#unzip NUTS2 shapefiles in WGS84 coordinate system 
-unzip("NUTS_RG_01M_2016_4326_LEVL_2.shp.zip")
+#download the country shp
+url <- "https://gisco-services.ec.europa.eu/distribution/v2/countries/download/ref-countries-2013-01m.shp.zip" # location on the Eurostat website
+download.file(url, basename(url), mode="wb") #download Eurostat country shapefiles
+unzip("ref-countries-2013-01m.shp.zip") # unzip the boundary data
 unzip("CNTR_RG_01M_2013_4326.shp.zip")
 
 #load NUTS shapefile
